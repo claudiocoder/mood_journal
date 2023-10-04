@@ -37,11 +37,12 @@ model Analysis {
   createAt DateTime     @default(now())
   updateAt DateTime     @updatedAt
   entryId  String
-  entry    JournalEntry @relation(fields: [entryId], references: [id])
+  entry    JournalEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
   mood     String
   summary  String       @db.Text
   color    String
   negative Boolean
+  subject  String
 
   @@unique([entryId])
 }

@@ -2,12 +2,6 @@ import Editor from '@/components/Editor'
 import { getUserByClerkId } from '@/utils/auth'
 import { prisma } from '@/utils/db'
 
-type JournalEditorPageParams = {
-  params: {
-    id: string
-  }
-}
-
 const getEntry = async (id: string) => {
   const user = await getUserByClerkId()
   const entry = await prisma.journalEntry.findUnique({
@@ -15,12 +9,15 @@ const getEntry = async (id: string) => {
       userId: user.id,
       id,
     },
+    include: {
+      analysis: true,
+    },
   })
 
   return entry
 }
 
-const JournalEditorPage = async ({ params }: JournalEditorPageParams) => {
+const JournalEditorPage = async ({ params }) => {
   const entry = await getEntry(params.id)
 
   return (
