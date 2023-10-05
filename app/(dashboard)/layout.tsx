@@ -9,6 +9,7 @@ type DashboardLayoutProps = {
 const links = [
   { name: 'Home', href: '/' },
   { name: 'Journal', href: '/journal' },
+  { name: 'History', href: '/history' },
 ]
 
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
